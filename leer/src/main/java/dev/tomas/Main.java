@@ -11,7 +11,6 @@ public class Main {
         FindRoute fr = FindRoute.getInstance();
         LoadFile lf = new LoadFile(fr);
         lf.nombreFicheros();
-        System.out.println("asdasdsa");
-        System.out.println("asdasdasdsad");
+        lf.climas.forEach(System.out::println);
     }
 }
