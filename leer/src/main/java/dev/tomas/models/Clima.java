@@ -1,6 +1,7 @@
 package dev.tomas.models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Clima {
     public ArrayList<Temperatura> temperaturas = new ArrayList<>();

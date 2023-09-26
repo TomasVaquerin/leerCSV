@@ -4,27 +4,31 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import dev.tomas.models.Clima;
 import dev.tomas.models.Temperatura;
 
-public class LoadFile {
+public class LoadManager {
 
+    private static LoadManager instance;
     public FindRoute fr;
     public ArrayList<Clima>climas = new ArrayList<>();
 
-    public LoadFile(FindRoute fr) {
-        this.fr = fr;
+    public LoadManager() {
+        fr = FindRoute.getInstance();
+    }
+
+    public static LoadManager getInstance() {
+        if (instance == null) {
+            instance = new LoadManager();
+        }
+        return instance;
     }
 
     public void nombreFicheros() {
@@ -62,7 +66,7 @@ public class LoadFile {
         locationData.setTempMax(Double.parseDouble(values[2].trim()));
         locationData.setHsTempMax(parseTimeWithPatterns(values[3].trim()));
         locationData.setTempMin(Double.parseDouble(values[4].trim()));
-        locationData.setHsTempMax(parseTimeWithPatterns(values[5].trim()));
+        locationData.setHsTempMin(parseTimeWithPatterns(values[5].trim()));
         locationData.setPrecipitacion(Double.parseDouble(values[6].trim()));
 
         return locationData;
